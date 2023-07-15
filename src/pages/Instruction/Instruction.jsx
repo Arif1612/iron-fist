@@ -1,14 +1,13 @@
 import { Helmet } from "react-helmet-async";
 
-const Home = () => {
+const Instruction = () => {
   return (
     <div>
       <Helmet>
-        <title>Iron Fist | Home </title>
+        <title>Iron Fist | Instruction </title>
       </Helmet>
-      <p>Home</p>
     </div>
   );
 };
 
-export default Home;
+export default Instruction;
