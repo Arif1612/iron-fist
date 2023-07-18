@@ -80,6 +80,9 @@ const Navbar = () => {
         <Link className=" mr-5 " to="/dashboard">
           Dashboard
         </Link>
+        <Link className=" mr-5 " to="/login">
+          Login
+        </Link>
       </div>
       {/* end */}
 
