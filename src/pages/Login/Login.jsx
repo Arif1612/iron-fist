@@ -8,9 +8,9 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -73,7 +73,6 @@ const Login = () => {
       <Helmet>
         <title>Iron Fist | Login </title>
       </Helmet>
-
       <div className="hero min-h-screen bg-base-200">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="hero-content flex-col lg:flex-row-reverse">
@@ -129,6 +128,11 @@ const Login = () => {
                     className="input input-bordered"
                     required
                   />
+                  <label className="label">
+                    <span className="label-text">
+                      Checking Captcha click anywhere
+                    </span>
+                  </label>
                 </div>
 
                 {/* account? */}

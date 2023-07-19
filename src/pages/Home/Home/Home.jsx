@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import SliderSection from "../SliderSection/SliderSection";
 
 const Home = () => {
   return (
@@ -6,7 +7,7 @@ const Home = () => {
       <Helmet>
         <title>Iron Fist | Home </title>
       </Helmet>
-      <p>Home</p>
+      <SliderSection></SliderSection>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
@@ -8,30 +8,40 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
   // all this thing taken from react hook form
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm();
   const password = watch("password");
 
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "SignUp Successfully",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+
+      updateUserProfile(data.name, data.photoUrl)
+        .then(() => {
+          console.log("user profile info updated");
+          reset();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Update Profile Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        })
+        .catch((error) => console.log(error));
     });
   };
 

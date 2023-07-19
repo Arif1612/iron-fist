@@ -10,7 +10,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut()
       .then(() => {})
-      .catch((error) => console.log(error));
+      .catch(error);
   };
   return (
     <div className="navbar  bg-gray-200 text-black">
@@ -56,7 +56,7 @@ const Navbar = () => {
         </div>
         <div>
           <Link
-            className="flex justify-center items-center text-2xl font-bold ms-3 me-3 p-3 rounded hover:bg-blue-300"
+            className="flex justify-center items-center text-2xl font-bold ms-3 me-3 p-3 rounded hover:bg-gray-500 hover:text-white"
             to="/"
           >
             <img
@@ -76,17 +76,29 @@ const Navbar = () => {
 
       {/* nav lg screen  (middle part) */}
       <div className="navbar-center hidden lg:flex">
-        <Link className=" mr-3 " to="/">
+        <Link
+          className=" mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg  hover:text-white"
+          to="/"
+        >
           Home
         </Link>
 
-        <Link className=" mr-5 " to="/instructors">
+        <Link
+          className=" mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg hover:text-white "
+          to="/instructors"
+        >
           Instructors
         </Link>
-        <Link className=" mr-5 " to="/classes">
+        <Link
+          className=" mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg hover:text-white  "
+          to="/classes"
+        >
           Classes
         </Link>
-        <Link className=" mr-5 " to="/dashboard">
+        <Link
+          className=" mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg hover:text-white "
+          to="/dashboard"
+        >
           Dashboard
         </Link>
       </div>
@@ -109,13 +121,15 @@ const Navbar = () => {
         {user ? (
           <button
             onClick={handleLogOut}
-            className="btn btn-active btn-secondary"
+            className="btn hover:bg-gray-500 px-5 py-2  rounded-lg hover:font-bold  hover:text-xl hover:text-white text-xl"
           >
             Logout
           </button>
         ) : (
           <Link to="/login">
-            <button className="btn btn-active btn-secondary">Login</button>
+            <button className="btn hover:bg-gray-500 px-5 py-2  rounded-lg hover:font-bold  hover:text-xl hover:text-white text-xl">
+              Login
+            </button>
           </Link>
         )}
       </div>
