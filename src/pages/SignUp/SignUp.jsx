@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
@@ -18,11 +19,19 @@ const SignUp = () => {
   const password = watch("password");
 
   const [showPassword, setShowPassword] = useState(false);
+
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "SignUp Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     });
   };
 
@@ -172,13 +181,14 @@ const SignUp = () => {
                       <label className="label">
                         <span className="label-text">Gender</span>
                       </label>
-                      <input
-                        {...register("gender")}
-                        name="gender"
-                        type="text"
-                        placeholder="gender"
+                      <select
                         className="input input-bordered"
-                      />
+                        {...register("gender")}
+                      >
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="other">other</option>
+                      </select>
                     </div>
                     {/* email */}
                     <div className="form-control">
