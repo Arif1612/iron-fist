@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.jpg";
 import { FaBeer } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="navbar  bg-gray-200 text-black">
       <div className="navbar-start">
@@ -80,14 +89,11 @@ const Navbar = () => {
         <Link className=" mr-5 " to="/dashboard">
           Dashboard
         </Link>
-        <Link className=" mr-5 " to="/login">
-          Login
-        </Link>
       </div>
       {/* end */}
 
       <div className="navbar-end">
-        {/* {user && (
+        {user && (
           <>
             <span className="mr-4 ">
               <img
@@ -111,7 +117,7 @@ const Navbar = () => {
           <Link to="/login">
             <button className="btn btn-active btn-secondary">Login</button>
           </Link>
-        )} */}
+        )}
       </div>
     </div>
   );

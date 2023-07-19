@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -9,14 +9,14 @@ import {
 } from "react-simple-captcha";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
 
   useEffect(() => {
-    loadCaptchaEnginge(5);
+    loadCaptchaEnginge(3);
   }, []);
   const handleLogin = (event) => {
     event.preventDefault();
@@ -27,14 +27,34 @@ const Login = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Login Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     });
   };
 
-  const handleValidateCaptcha = () => {
-    const user_captcha_value = captchaRef.current.value;
+  const handleValidateCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
     console.log(user_captcha_value);
     if (validateCaptcha(user_captcha_value)) {
       setDisabled(false);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Validate Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "Error",
+        title: "Oops...",
+        text: "Type the Correct Captcha!",
+      });
     }
   };
   return (
@@ -42,7 +62,7 @@ const Login = () => {
       <Helmet>
         <title>Iron Fist | Login </title>
       </Helmet>
-      
+
       <div className="hero min-h-screen bg-base-200">
         <form onSubmit={handleLogin}>
           <div className="hero-content flex-col lg:flex-row-reverse">
@@ -82,20 +102,13 @@ const Login = () => {
                     <LoadCanvasTemplate />
                   </label>
                   <input
-                    ref={captchaRef}
+                    onBlur={handleValidateCaptcha}
                     name="captcha"
                     type="password"
                     placeholder="type the captcha above"
                     className="input input-bordered"
                     required
                   />
-                  {/* extra button */}
-                  <button
-                    onClick={handleValidateCaptcha}
-                    className="btn btn-outline btn-xs mt-3"
-                  >
-                    Validate
-                  </button>
                 </div>
 
                 {/* account? */}
