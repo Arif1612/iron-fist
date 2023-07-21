@@ -73,100 +73,102 @@ const Login = () => {
       <Helmet>
         <title>Iron Fist | Login </title>
       </Helmet>
-      <div className="hero min-h-screen bg-base-200">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="hero-content flex-col lg:flex-row-reverse">
-            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-              <div className="card-body">
-                {/* email */}
-                <div className="form-control">
+      <div className="hero md:flex md:justify-center md:items-center h-screen ">
+        <div className="md:w-5/12 w-full bg-base-200 ">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="hero-content w-full">
+              <div className="card  w-full  shadow-2xl bg-base-100">
+                <div className="card-body">
+                  {/* email */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Email</span>
+                    </label>
+                    <input
+                      {...register("email", { required: true })}
+                      name="email"
+                      type="text"
+                      placeholder="email"
+                      className="input input-bordered"
+                    />
+                    {/* shown error */}
+                    {errors.email && (
+                      <span className="text-red-500">Email is required</span>
+                    )}
+                  </div>
+
+                  {/* password */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Password</span>
+                    </label>
+                    <input
+                      {...register("password", { required: true })}
+                      name="password"
+                      type="password"
+                      placeholder="password"
+                      className="input input-bordered"
+                    />
+
+                    {/* shown error */}
+                    {errors.email && (
+                      <span className="text-red-500">Email is required</span>
+                    )}
+                  </div>
+                  {/* captcha */}
+
+                  <div className="form-control my-2 ">
+                    <label className="label">
+                      <LoadCanvasTemplate />
+                    </label>
+                    <input
+                      onBlur={handleValidateCaptcha}
+                      name="captcha"
+                      type="password"
+                      placeholder="type the captcha above"
+                      className="input input-bordered"
+                      required
+                    />
+                    <label className="label">
+                      <span className="label-text">
+                        Checking Captcha click anywhere
+                      </span>
+                    </label>
+                  </div>
+
+                  {/* account? */}
                   <label className="label">
-                    <span className="label-text">Email</span>
+                    <p className="block text-red-700  font-semibold">
+                      Do not have an account?
+                      <Link to="/signup" className="text-green-700 ml-1">
+                        Register
+                      </Link>
+                    </p>
                   </label>
-                  <input
-                    {...register("email", { required: true })}
-                    name="email"
-                    type="text"
-                    placeholder="email"
-                    className="input input-bordered"
-                  />
-                  {/* shown error */}
-                  {errors.email && (
-                    <span className="text-red-500">Email is required</span>
-                  )}
-                </div>
 
-                {/* password */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Password</span>
-                  </label>
-                  <input
-                    {...register("password", { required: true })}
-                    name="password"
-                    type="password"
-                    placeholder="password"
-                    className="input input-bordered"
-                  />
+                  {/* Login*/}
+                  <div className="form-control mt-2 ml-1">
+                    <button
+                      type="submit"
+                      disabled={disabled}
+                      className="btn btn-success"
+                    >
+                      Login
+                    </button>
+                  </div>
 
-                  {/* shown error */}
-                  {errors.email && (
-                    <span className="text-red-500">Email is required</span>
-                  )}
-                </div>
-                {/* captcha */}
+                  <p className="text-center">Or</p>
 
-                <div className="form-control my-2 ">
-                  <label className="label">
-                    <LoadCanvasTemplate />
-                  </label>
-                  <input
-                    onBlur={handleValidateCaptcha}
-                    name="captcha"
-                    type="password"
-                    placeholder="type the captcha above"
-                    className="input input-bordered"
-                    required
-                  />
-                  <label className="label">
-                    <span className="label-text">
-                      Checking Captcha click anywhere
-                    </span>
-                  </label>
-                </div>
-
-                {/* account? */}
-                <label className="label">
-                  <p className="block text-red-700  font-semibold">
-                    Do not have an account?
-                    <Link to="/signup" className="text-green-700 ml-1">
-                      Register
-                    </Link>
-                  </p>
-                </label>
-
-                {/* Login*/}
-                <div className="form-control mt-2 ml-1">
-                  <button
-                    type="submit"
-                    disabled={disabled}
-                    className="btn btn-success"
-                  >
-                    Login
-                  </button>
-                </div>
-
-                <p className="text-center">Or</p>
-
-                <div className="form-control mt-2">
-                  <button onClick="" className="btn btn-warning">
-                    Login With Google
-                  </button>
+                  <div className="form-control mt-2">
+                    <button onClick="" className="btn btn-warning">
+                      Login With Google
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </>
   );

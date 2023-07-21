@@ -58,7 +58,7 @@ const SignUp = () => {
                 {/* main div */}
                 <div className="flex flex-col md:flex-row">
                   {/* left */}
-                  <div className="mr-5 w-1/2">
+                  <div className="mr-5 md:w-1/2">
                     {/* name */}
                     <div className="form-control">
                       <label className="label">
@@ -166,7 +166,7 @@ const SignUp = () => {
                     </div>
                   </div>
                   {/* right */}
-                  <div className="w-1/2">
+                  <div className="md:w-1/2">
                     {/* photo URL */}
                     <div className="form-control">
                       <label className="label">

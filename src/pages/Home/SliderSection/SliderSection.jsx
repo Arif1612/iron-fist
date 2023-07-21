@@ -22,7 +22,7 @@ const SliderSection = () => {
             <h1 className="uppercase text-4xl font-bold md:text-6xl mb-3">
               Iron Fist Academy
             </h1>
-            <p className="text-xl font-bold uppercase md:text-2xl mb-4">
+            <p className="text-xl font-bold uppercase md:text-2xl mb-6">
               Train | Belong | Evolve
             </p>
             <button className="btn px-6 py-4 hover:bg-gray-600 hover:text-white font-bold uppercase ">
@@ -120,8 +120,6 @@ const SliderSection = () => {
             </button>
           </div>
         </div>
-
-       
       </Carousel>
     </div>
   );
