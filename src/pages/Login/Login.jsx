@@ -11,6 +11,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -73,12 +74,12 @@ const Login = () => {
       <Helmet>
         <title>Iron Fist | Login </title>
       </Helmet>
-      <div className="hero md:flex md:justify-center md:items-center h-screen ">
-        <div className="md:w-5/12 w-full bg-base-200 ">
+      <div className="hero md:flex md:justify-center md:items-center h-screen   bg-base-200 ">
+        <div className="md:w-5/12 w-full bg-base-100  shadow-2xl bg-base-100  ">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="hero-content w-full">
-              <div className="card  w-full  shadow-2xl bg-base-100">
-                <div className="card-body">
+              <div className="card  w-full ">
+                <div className="card-body pb-0">
                   {/* email */}
                   <div className="form-control">
                     <label className="label">
@@ -140,14 +141,14 @@ const Login = () => {
                   <label className="label">
                     <p className="block text-red-700  font-semibold">
                       Do not have an account?
-                      <Link to="/signup" className="text-green-700 ml-1">
+                      <Link to="/signup" className="text-green-700 mb-1">
                         Register
                       </Link>
                     </p>
                   </label>
 
                   {/* Login*/}
-                  <div className="form-control mt-2 ml-1">
+                  <div className="form-control  mb-3">
                     <button
                       type="submit"
                       disabled={disabled}
@@ -156,18 +157,11 @@ const Login = () => {
                       Login
                     </button>
                   </div>
-
-                  <p className="text-center">Or</p>
-
-                  <div className="form-control mt-2">
-                    <button onClick="" className="btn btn-warning">
-                      Login With Google
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
           </form>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </>

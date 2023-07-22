@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+
   // all this thing taken from react hook form
   const {
     register,
@@ -23,37 +25,47 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data) => {
-    // console.log(data);
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
 
-      updateUserProfile(data.name, data.photoUrl)
+      updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          console.log("user profile info updated");
-          reset();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Update Profile Successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate("/");
+          const saveUser = { name: data.name, email: data.email };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User created successfully.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
         })
         .catch((error) => console.log(error));
     });
   };
-
   return (
     <>
       <Helmet>
         <title>Iron Fist | SignUp </title>
       </Helmet>
-      <div className="hero min-h-screen bg-base-200">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="hero-content flex-col lg:flex-row-reverse">
-            <div className="card  w-full  shadow-2xl bg-base-100">
+      <div className="hero md:flex md:justify-center md:items-center h-screen bg-base-200 ">
+        <div className="md:w-5/12 w-9/12 bg-base-100 shadow-2xl  bg-base-100  ">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="card  w-full  bg-base-100">
               <div className="card-body">
                 {/* main div */}
                 <div className="flex flex-col md:flex-row">
@@ -245,18 +257,11 @@ const SignUp = () => {
                     SignUp
                   </button>
                 </div>
-
-                <p className="text-center">Or</p>
-
-                <div className="form-control mt-2">
-                  <button className="btn btn-warning">
-                    SignUp With Google
-                  </button>
-                </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+          <SocialLogin></SocialLogin>
+        </div>
       </div>
     </>
   );
