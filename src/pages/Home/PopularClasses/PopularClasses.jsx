@@ -3,11 +3,17 @@ import useClass from "../../../hooks/useClass";
 
 const PopularClasses = () => {
   const [classes] = useClass();
+  // Sort the classes array based on totalSeats in descending order
+  const sortedClasses = [...classes].sort(
+    (a, b) => b.totalSeats - a.totalSeats
+  );
+  // Get the first six classes from the sorted array
+  const topSixClasses = sortedClasses.slice(0, 6);
 
   return (
     <div className="flex justify-center">
       <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
-        {classes.map((singleClass) => (
+        {topSixClasses.map((singleClass) => (
           <div
             key={singleClass._id}
             className="card w-96 bg-base-100 shadow-xl"
@@ -37,20 +43,31 @@ const PopularClasses = () => {
                       {singleClass.courseDuration}
                     </p>
                     <p className="mb-2">
-                    <span className="font-bold"> Total Class:</span> {singleClass.totalClass}
+                      <span className="font-bold"> Total Class:</span>{" "}
+                      {singleClass.totalClass}
                     </p>
-                    <p><span className="font-bold"> Price:</span>{singleClass.Price}</p>
+                    <p>
+                      <span className="font-bold"> Price:</span>
+                      {singleClass.Price}
+                    </p>
                   </div>
                   <div className="text-right text-lg">
                     <p className="mb-2">
-                    <span className="font-bold"> Total Seats:</span> {singleClass.totalSeats}
+                      <span className="font-bold"> Total Seats:</span>{" "}
+                      {singleClass.totalSeats}
                     </p>
-                    <p> <span className="font-bold"> Available Seats: </span> {singleClass.availableSeats}</p>
+                    <p>
+                      {" "}
+                      <span className="font-bold"> Available Seats: </span>{" "}
+                      {singleClass.availableSeats}
+                    </p>
                   </div>
                 </div>
               </div>
               <div className="card-actions w-full">
-                <button className="btn btn-primary w-full font-bold">Buy Now</button>
+                <button className="btn btn-primary w-full font-bold">
+                  Buy Now
+                </button>
               </div>
             </div>
           </div>

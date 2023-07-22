@@ -11,6 +11,7 @@ import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   // all this thing taken from react hook form
   const {
@@ -25,44 +26,52 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password).then((result) => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
+    // console.log(data);
+    createUser(data.email, data.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
 
-      updateUserProfile(data.name, data.photoURL)
-        .then(() => {
-          const saveUser = { name: data.name, email: data.email };
-          fetch("http://localhost:5000/users", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(saveUser),
+        updateUserProfile(data.name, data.photoUrl)
+          .then(() => {
+            const saveUser = { name: data.name, email: data.email };
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(saveUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  reset();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Update Profile Successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  navigate("/");
+                }
+              });
           })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.insertedId) {
-                reset();
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "User created successfully.",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                navigate("/");
-              }
-            });
-        })
-        .catch((error) => console.log(error));
-    });
+          .catch((error) => console.log(error));
+      })
+      .catch((error) => {
+        // console.log(error.message);
+        const errorMessage = error.message;
+        setErrorMessage(errorMessage);
+      });
   };
+
   return (
     <>
       <Helmet>
         <title>Iron Fist | SignUp </title>
       </Helmet>
-      <div className="hero md:flex md:justify-center md:items-center h-screen bg-base-200 ">
+      <div className="hero md:flex md:justify-center md:items-center h-screen    bg-base-200 ">
         <div className="md:w-5/12 w-9/12 bg-base-100 shadow-2xl  bg-base-100  ">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="card  w-full  bg-base-100">
@@ -240,6 +249,13 @@ const SignUp = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* eroor message for all the eroor */}
+                {errorMessage && (
+                  <p className="text-red-700 text-xl font-bold mb-2 mt-3">
+                    {errorMessage}
+                  </p>
+                )}
 
                 {/* account? */}
                 <label className="label">
