@@ -9,7 +9,7 @@ const Home = () => {
         <title>Iron Fist | Home </title>
       </Helmet>
       <SliderSection></SliderSection>
-      <div class="text-center">
+      <div class="text-center my-10 " >
         <h2 class="text-5xl my-5">Popular Classes</h2>
         <hr class="md:w-4/12 w-9/12 mx-auto border-2 border-gray-700  " />
       </div>
