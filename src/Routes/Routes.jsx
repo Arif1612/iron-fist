@@ -2,10 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import Instruction from "../pages/Instruction/Instruction";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Classes from "../pages/Classes/Classes";
+import Instructor from "../pages/Instructor/Instructor";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/instructors",
-        element: <Instruction></Instruction>,
+        element: <Instructor></Instructor>,
       },
       {
         path: "/classes",

@@ -1,13 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-import React from "react";
-
 const useInstructor = () => {
   const {
     isLoading: loading,
-    isError,
     data: instructors = [],
-    error,
     refetch,
   } = useQuery({
     queryKey: ["instructor"],
