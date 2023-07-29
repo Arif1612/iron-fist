@@ -13,7 +13,7 @@ const PopularClasses = () => {
   return (
     <div>
       <div className="flex justify-center">
-        <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
           {topSixClasses.map((singleClass) => (
             <div
               key={singleClass._id}
@@ -70,7 +70,7 @@ const PopularClasses = () => {
                 </div>
                 <div className="card-actions w-full">
                   <button className="btn btn-primary w-full font-bold">
-                    Buy Now
+                    select
                   </button>
                 </div>
               </div>

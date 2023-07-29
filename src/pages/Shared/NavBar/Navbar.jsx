@@ -49,8 +49,8 @@ const Navbar = () => {
             <Link className=" mr-5 " to="/classes">
               Classes
             </Link>
-            <Link className=" mr-5 " to="/dashboard">
-              Dashboard
+            <Link className=" mr-5 " to="/selected-classses">
+              Selected Classes
             </Link>
           </ul>
         </div>
@@ -96,10 +96,10 @@ const Navbar = () => {
           Classes
         </Link>
         <Link
-          className=" mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg hover:text-white "
-          to="/dashboard"
+          className="mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg hover:text-white  "
+          to="/selected-classes"
         >
-          Dashboard
+          Selected Classes
         </Link>
       </div>
       {/* end */}

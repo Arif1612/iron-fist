@@ -16,9 +16,11 @@ const StudentAchievements = () => {
             />
 
             <div className="card-body text-center  ">
-              <h2 className="text-2xl font-bold">{student.studentName}</h2>
-              <h2 className="text-2xl font-semibold">{student.courseName}</h2>
-              <p>{student.achievements}</p>
+              <div className="mt-12">
+                <h2 className="text-2xl font-bold">{student.studentName}</h2>
+                <h2 className="text-2xl font-semibold">{student.courseName}</h2>
+                <p>{student.achievements}</p>
+              </div>
             </div>
           </div>
         ))}
