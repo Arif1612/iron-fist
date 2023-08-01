@@ -3,13 +3,19 @@ import useClass from "../../../hooks/useClass";
 
 const PopularClasses = () => {
   const [classes] = useClass();
-  // Sort the classes array based on totalSeats in descending order
-  const sortedClasses = [...classes].sort(
-    (a, b) => b.totalSeats - a.totalSeats
+  // Calculate noOfStudents (totalSeats - availableSeats) for each class
+  const classesWithNoOfStudents = classes.map((singleClass) => ({
+    ...singleClass,
+    noOfStudents: singleClass.totalSeats - singleClass.availableSeats,
+  }));
+
+  // Sort the classesWithNoOfStudents array based on noOfStudents in descending order
+  const sortedClasses = [...classesWithNoOfStudents].sort(
+    (a, b) => b.noOfStudents - a.noOfStudents
   );
+
   // Get the first six classes from the sorted array
   const topSixClasses = sortedClasses.slice(0, 6);
-
   return (
     <div>
       <div className="flex justify-center">
@@ -28,11 +34,11 @@ const PopularClasses = () => {
               </figure>
               <div className="card-body">
                 <div>
-                  <h2 className="text-center font-bold text-3xl mb-3 ">
+                  <h2 className="text-center font-semibold text-3xl mb-3 ">
                     {singleClass.subName}
                   </h2>
                   <h2 className="text-center text-xl mb-2 ">
-                    <span className="font-bold "> Instructor: </span>
+                    <span className="font-semibold "> Instructor: </span>
                     <span className="text-normal">
                       {singleClass.instructorsName}
                     </span>
@@ -40,36 +46,44 @@ const PopularClasses = () => {
                   <div className="flex">
                     <div className="w-1/2 text-lg">
                       <p className="mb-2">
-                        <span className="font-bold"> Duration:</span>
+                        <span className="font-semibold"> Duration:</span>
                         {singleClass.courseDuration}
                       </p>
                       <p className="mb-2">
-                        <span className="font-bold"> Total Class:</span>
+                        <span className="font-semibold"> Total Class:</span>
                         {singleClass.totalClass}
                       </p>
                       <p>
-                        <span className="font-bold"> Price:</span>
-                        {singleClass.Price}
+                        <span className="font-semibold"> Price:</span>
+                        {singleClass.price}
                       </p>
                     </div>
                     <div className="text-right text-lg">
                       <p className="mb-2">
-                        <span className="font-bold"> Total Seats:</span>{" "}
+                        <span className="font-semibold"> Total Seats:</span>{" "}
                         {singleClass.totalSeats}
                       </p>
-                      <p>
+                      <p className="mb-2">
                         {" "}
-                        <span className="font-bold">
+                        <span className="font-semibold">
                           {" "}
                           Available Seats:{" "}
                         </span>{" "}
                         {singleClass.availableSeats}
                       </p>
+                      <p>
+                        {" "}
+                        <span className="font-semibold">
+                          {" "}
+                          No. Of Students:{" "}
+                        </span>{" "}
+                        {singleClass.noOfStudents}
+                      </p>
                     </div>
                   </div>
                 </div>
                 <div className="card-actions w-full">
-                  <button className="btn btn-primary w-full font-bold">
+                  <button className="btn btn-primary w-full font-semibold">
                     select
                   </button>
                 </div>

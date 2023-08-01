@@ -3,8 +3,10 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import useStudentCart from "../../../hooks/useStudentCart";
 
 const SelectedClasses = ({ classes }) => {
+  // console.log(classes);
   const {
     price,
     availableSeats,
@@ -15,13 +17,14 @@ const SelectedClasses = ({ classes }) => {
     totalClass,
     totalSeats,
     _id,
+    noOfStudents,
   } = classes;
-  //   console.log(classes);
 
   const { user } = useContext(AuthContext);
-  //   console.log(user);
+
   const navigate = useNavigate();
   const location = useLocation();
+  const [, refetch] = useStudentCart();
 
   const handleAddToCart = (item) => {
     //    console.log(user);
@@ -48,7 +51,7 @@ const SelectedClasses = ({ classes }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            console.log("if");
+            // we refetch to update the number of items in the cart
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -56,24 +59,26 @@ const SelectedClasses = ({ classes }) => {
               showConfirmButton: false,
               timer: 2000,
             });
-          } else {
-            console.log("else");
-            Swal.fire({
-              title: "Please login to select the class",
-              icon: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#3085d6",
-              cancelButtonColor: "#d33",
-              confirmButtonText: "Login Now!",
-            }).then((result) => {
-              if (result.isConfirmed) {
-                navigate("/login", { state: { from: location } });
-              }
-            });
+            refetch();
           }
         });
     }
     //   main if ar else ar por hobe
+    else {
+      // console.log("else");
+      Swal.fire({
+        title: "Please login to select the class",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login Now!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
   };
 
   return (
@@ -84,34 +89,38 @@ const SelectedClasses = ({ classes }) => {
         </figure>
         <div className="card-body">
           <div>
-            <h2 className="text-center font-bold text-3xl mb-3 ">{subName}</h2>
+            <h2 className="text-center font-semibold text-3xl mb-3 ">{subName}</h2>
             <h2 className="text-center text-xl mb-2 ">
-              <span className="font-bold "> Instructor: </span>
+              <span className="font-semibold "> Instructor: </span>
               <span className="text-normal">{instructorsName}</span>
             </h2>
             <div className="flex">
               <div className="w-1/2 text-lg">
                 <p className="mb-2">
-                  <span className="font-bold"> Duration:</span>
+                  <span className="font-semibold"> Duration:</span>
                   {courseDuration}
                 </p>
                 <p className="mb-2">
-                  <span className="font-bold"> Total Class:</span>
+                  <span className="font-semibold"> Total Class:</span>
                   {totalClass}
                 </p>
                 <p>
-                  <span className="font-bold"> Price:</span>
+                  <span className="font-semibold"> Price:</span>
                   {price}
                 </p>
               </div>
               <div className="text-right text-lg">
                 <p className="mb-2">
-                  <span className="font-bold"> Total Seats:</span> {totalSeats}
+                  <span className="font-semibold"> Total Seats:</span> {totalSeats}
                 </p>
-                <p>
+                <p className="mb-2">
                   {" "}
-                  <span className="font-bold"> Available Seats: </span>{" "}
+                  <span className="font-semibold"> Available Seats: </span>{" "}
                   {availableSeats}
+                </p>
+                <p className="mb-2">
+                  <span className="font-semibold"> No. Of Students:</span>{" "}
+                  {noOfStudents}
                 </p>
               </div>
             </div>
@@ -119,7 +128,7 @@ const SelectedClasses = ({ classes }) => {
           <div className="card-actions w-full">
             <button
               onClick={() => handleAddToCart(classes)}
-              className="btn btn-primary w-full font-bold"
+              className="btn btn-primary w-full font-semibold"
             >
               select
             </button>

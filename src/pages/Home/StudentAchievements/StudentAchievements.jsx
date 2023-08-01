@@ -8,7 +8,10 @@ const StudentAchievements = () => {
     <div>
       <Marquee>
         {students.map((student) => (
-          <div className="card w-96 bg-base-100 shadow-xl image-full mr-5 ">
+          <div
+            key={student._id}
+            className="card w-96 bg-base-100 shadow-xl image-full mr-5 "
+          >
             <img
               className="w-[400px] h-[280px] rounded-xl"
               src={student.picture}

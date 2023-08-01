@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.jpg";
-import { FaBeer } from "react-icons/fa";
+import { FaBeer, FaShoppingCart } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import useStudentCart from "../../../hooks/useStudentCart";
 
 const Navbar = () => {
+  const [studentCarts] = useStudentCart();
   const { user, logOut } = useContext(AuthContext);
+  console.log(studentCarts);
 
   const handleLogOut = () => {
     logOut()
@@ -96,10 +99,14 @@ const Navbar = () => {
           Classes
         </Link>
         <Link
+          to="/dashboard/selected-classes"
           className="mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg hover:text-white  "
-          to="/selected-classes"
         >
-          Selected Classes
+          {/* <FaShoppingCart></FaShoppingCart>
+          <div className="badge badge-secondary">
+            +{studentCarts?.length || 0}
+          </div> */}
+          Dashboard
         </Link>
       </div>
       {/* end */}

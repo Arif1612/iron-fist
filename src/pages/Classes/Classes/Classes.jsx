@@ -1,16 +1,23 @@
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import useClass from "../../../hooks/useClass";
-import SelectedClasses from "../SelectedClasses/SelectedClasses";
+
 import { useContext } from "react";
+import SelectedClasses from "../SelectedClasses/SelectedClasses";
 
 const Classes = () => {
   const { user } = useContext(AuthContext);
   const [classes] = useClass();
 
-  // Sort the classes array based on totalSeats in descending order
-  const sortedClasses = [...classes].sort(
-    (a, b) => b.totalSeats - a.totalSeats
+  // Calculate noOfStudents (totalSeats - availableSeats) for each class
+  const classesWithNoOfStudents = classes.map((singleClass) => ({
+    ...singleClass,
+    noOfStudents: singleClass.totalSeats - singleClass.availableSeats,
+  }));
+
+  // Sort the classes array based on noOfStudents in descending order
+  const sortedClasses = [...classesWithNoOfStudents].sort(
+    (a, b) => b.noOfStudents - a.noOfStudents
   );
 
   return (
