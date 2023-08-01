@@ -51,15 +51,15 @@ const SelectedClasses = () => {
         <title>Iron Fist | Selected Class </title>
       </Helmet>
       <div>
-        <h1 className="text-3xl text-center my-5">
-          Total Subject taken: {studentCarts.length}
+        <h1 className="text-3xl text-center my-5 font-bold">
+          Total Subject Taken: {studentCarts.length}
         </h1>
         <div className="flex justify-center">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4">
+          <div className="grid sm:grid-cols-2 sm:w-11/12 lg:w-9/12 mx-auto  grid-cols-1 gap-8">
             {sortedClasses.map((singleClass) => (
               <div
                 key={singleClass._id}
-                className="card w-full bg-base-300 shadow-xl"
+                className="card bg-base-300 shadow-xl"
               >
                 <figure className="px-10 pt-10">
                   <img
@@ -138,6 +138,12 @@ const SelectedClasses = () => {
                           d="M6 18L18 6M6 6l12 12"
                         />
                       </svg>
+                    </button>
+                  </div>
+                  {/* pay button */}
+                  <div className="w-full ">
+                    <button className="btn btn-active btn-primary w-full">
+                      Pay
                     </button>
                   </div>
                 </div>
