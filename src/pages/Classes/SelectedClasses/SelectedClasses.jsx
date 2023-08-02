@@ -61,6 +61,14 @@ const SelectedClasses = ({ classes }) => {
             });
             refetch();
           }
+          else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              title: 'You already select the class',
+            })
+            
+          }
         });
     }
     //   main if ar else ar por hobe

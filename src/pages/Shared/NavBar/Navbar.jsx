@@ -8,7 +8,7 @@ import useStudentCart from "../../../hooks/useStudentCart";
 const Navbar = () => {
   const [studentCarts] = useStudentCart();
   const { user, logOut } = useContext(AuthContext);
-  console.log(studentCarts);
+  // console.log(studentCarts);
 
   const handleLogOut = () => {
     logOut()
