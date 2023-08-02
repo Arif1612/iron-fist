@@ -51,7 +51,7 @@ const SelectedClasses = () => {
         <title>Iron Fist | Selected Class </title>
       </Helmet>
       <div>
-        <h1 className="text-3xl text-center my-5 font-bold">
+        <h1 className="text-3xl text-center my-6 font-bold">
           Total Subject Taken: {studentCarts.length}
         </h1>
         <div className="flex justify-center">
