@@ -53,7 +53,7 @@ const SelectedClasses = ({ classes }) => {
           if (data.insertedId) {
             // we refetch to update the number of items in the cart
             Swal.fire({
-              position: "top-end",
+              position: "top",
               icon: "success",
               title: "Class added successfully in the student-carts",
               showConfirmButton: false,
@@ -64,8 +64,7 @@ const SelectedClasses = ({ classes }) => {
           else {
             Swal.fire({
               icon: 'error',
-              title: 'Oops...',
-              title: 'You already select the class',
+              title: 'You already select the class.',
             })
             
           }

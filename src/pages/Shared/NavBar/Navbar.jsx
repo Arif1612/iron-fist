@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.jpg";
-import { FaBeer, FaShoppingCart } from "react-icons/fa";
+import { FaBeer } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
-import useStudentCart from "../../../hooks/useStudentCart";
 
 const Navbar = () => {
-  const [studentCarts] = useStudentCart();
   const { user, logOut } = useContext(AuthContext);
   // console.log(studentCarts);
 
@@ -40,19 +38,31 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm flex flex-col dropdown-content  p-2 shadow bg-base-300 rounded-box w-60 text-center text-black absolute top-0"
+            className="menu menu-sm flex flex-col dropdown-content  p-2 shadow bg-base-300 rounded-box w-60 text-center text-black absolute top-0 z-10"
           >
             <FaBeer />
-            <Link className=" mr-5 " to="/">
+            <Link
+              to="/"
+              className="  mx-5 hover:bg-gray-500  text-base  hover:text-white p-2 rounded-lg"
+            >
               Home
             </Link>
-            <Link className=" mr-5 " to="/instruction">
+            <Link
+              to="/instructors"
+              className="  mx-5 hover:bg-gray-500  text-base  hover:text-white p-2 rounded-lg"
+            >
               Instructors
             </Link>
-            <Link className=" mr-5 " to="/classes">
+            <Link
+              to="/classes"
+              className="  mx-5 hover:bg-gray-500  text-base  hover:text-white p-2 rounded-lg"
+            >
               Classes
             </Link>
-            <Link className=" mr-5 " to="/selected-classses">
+            <Link
+              to="/dashboard/selected-classes"
+              className="  mx-5 hover:bg-gray-500  text-base  hover:text-white p-2 rounded-lg"
+            >
               Selected Classes
             </Link>
           </ul>

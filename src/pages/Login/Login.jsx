@@ -30,20 +30,50 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    signIn(data.email, data.password).then((result) => {
-      const user = result.user;
-      console.log(user);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Login Successfully",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
 
-      navigate(from, { replace: true });
-    });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log("Login Failed:", error);
+        const errorMessage = error.message || "An error occurred during login.";
+        Swal.fire({ 
+          position: "top",
+          icon: "error",
+          title: errorMessage,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
+
+  // ager code
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  //   signIn(data.email, data.password).then((result) => {
+  //     const user = result.user;
+  //     console.log(user);
+  //     Swal.fire({
+  //       position: "top-end",
+  //       icon: "success",
+  //       title: "Login Successfully",
+  //       showConfirmButton: false,
+  //       timer: 1500,
+  //     });
+
+  //     navigate(from, { replace: true });
+  //   });
+  // };
 
   useEffect(() => {
     loadCaptchaEnginge(3);
