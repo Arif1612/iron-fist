@@ -10,11 +10,14 @@ import {
   FaBook,
 } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
+import useInstructorDashboard from "../hooks/useInstructorDashboard";
 
 const Dashboard = () => {
   // TODO: NEED TO TAKE FROM USER
-  // const isAdmin = true;
-  const [isAdmin] = useAdmin();
+  const isInstructor = true;
+  const isAdmin = false;
+  // const [isAdmin] = useAdmin();
+  // const [isInstructor] = useInstructorDashboard();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -57,15 +60,19 @@ const Dashboard = () => {
             {/* divider */}
             <div className="divider  "></div>
 
+            {/* check instructor or not */}
+            {/* Check if the user is an Instructor */}
+
             {/* check admin or not */}
 
+            {/* check admin or instructor or normal user */}
             {isAdmin ? (
               <>
                 <h2 className="text-lg font-bold ml-4 my-2">Admin Dashboard</h2>
                 <li>
                   <Link
                     to="/dashboard/manage-classes"
-                    className="hover:bg-gray-500 hover:text-white rounded  text-base  "
+                    className="hover:bg-gray-500 hover:text-white rounded  text-base"
                   >
                     <FaBook /> Manage Classes
                   </Link>
@@ -80,13 +87,34 @@ const Dashboard = () => {
                   </Link>
                 </li>
               </>
+            ) : isInstructor ? (
+              <>
+                <h2 className="text-lg font-bold ml-4 my-2">
+                  Instructor Dashboard
+                </h2>
+                <li>
+                  <Link
+                    to="/dashboard/add-a-class"
+                    className="hover:bg-gray-500 hover:text-white rounded text-base"
+                  >
+                    <FaBook /> Add a Class
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/dashboard/my-classes"
+                    className="hover:bg-gray-500 hover:text-white rounded text-base"
+                  >
+                    <FaUsers /> My Classes
+                  </Link>
+                </li>
+              </>
             ) : (
               <>
-                {" "}
                 <li>
                   <Link
                     to="/dashboard/selected-classes"
-                    className="hover:bg-gray-500 hover:text-white rounded  text-base  "
+                    className="hover:bg-gray-500 hover:text-white rounded  text-base"
                   >
                     <FaSchool /> Selected Classes
                   </Link>
