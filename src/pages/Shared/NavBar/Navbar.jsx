@@ -59,12 +59,14 @@ const Navbar = () => {
             >
               Classes
             </Link>
-            <Link
-              to="/dashboard/selected-classes"
-              className="  mx-5 hover:bg-gray-500  text-base  hover:text-white p-2 rounded-lg"
-            >
-              Selected Classes
-            </Link>
+            {user && (
+              <Link
+                to="/dashboard/selected-classes"
+                className="  mx-5 hover:bg-gray-500  text-base  hover:text-white p-2 rounded-lg"
+              >
+                Selected Classes
+              </Link>
+            )}
           </ul>
         </div>
         <div>
@@ -108,16 +110,14 @@ const Navbar = () => {
         >
           Classes
         </Link>
-        <Link
-          to="/dashboard/selected-classes"
-          className="mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg hover:text-white  "
-        >
-          {/* <FaShoppingCart></FaShoppingCart>
-          <div className="badge badge-secondary">
-            +{studentCarts?.length || 0}
-          </div> */}
-          Dashboard
-        </Link>
+        {user && (
+          <Link
+            to="/dashboard/selected-classes"
+            className="mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg hover:text-white "
+          >
+            Selected Classes
+          </Link>
+        )}
       </div>
       {/* end */}
 

@@ -9,10 +9,12 @@ import {
   FaUsers,
   FaBook,
 } from "react-icons/fa";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   // TODO: NEED TO TAKE FROM USER
-  const isAdmin = true;
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -22,7 +24,7 @@ const Dashboard = () => {
           <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="btn btn-primary my-10 drawer-button lg:hidden"
           >
             Open drawer
           </label>
@@ -59,15 +61,16 @@ const Dashboard = () => {
 
             {isAdmin ? (
               <>
+                <h2 className="text-lg font-bold ml-4 my-2">Admin Dashboard</h2>
                 <li>
                   <Link
-                    to="/dashboard/classes"
+                    to="/dashboard/manage-classes"
                     className="hover:bg-gray-500 hover:text-white rounded  text-base  "
                   >
                     <FaBook /> Manage Classes
                   </Link>
                 </li>
-                
+
                 <li>
                   <Link
                     to="/dashboard/all-users"

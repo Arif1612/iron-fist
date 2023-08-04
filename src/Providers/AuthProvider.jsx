@@ -59,16 +59,16 @@ const AuthProvider = ({ children }) => {
 
       // get and set token
       if (currentUser) {
-        axios.post('http://localhost:5000/jwt', { email: currentUser.email })
-          .then(data => {
-            console.log(data.data.token)
-            localStorage.setItem('access-token',data.data.token)
-        })
+        axios
+          .post("http://localhost:5000/jwt", { email: currentUser.email })
+          .then((data) => {
+            console.log(data.data.token);
+            localStorage.setItem("access-token", data.data.token);
+            setLoading(false);
+          });
+      } else {
+        localStorage.removeItem("access-token");
       }
-      else {
-        localStorage.removeItem('access-token')
-      }
-      setLoading(false);
     });
     return () => {
       return unsubscribe;
@@ -82,7 +82,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     updateUserProfile,
-    googleSignIn
+    googleSignIn,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
