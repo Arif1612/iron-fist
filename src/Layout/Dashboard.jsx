@@ -14,10 +14,10 @@ import useInstructorDashboard from "../hooks/useInstructorDashboard";
 
 const Dashboard = () => {
   // TODO: NEED TO TAKE FROM USER
-  const isInstructor = true;
-  const isAdmin = false;
-  // const [isAdmin] = useAdmin();
-  // const [isInstructor] = useInstructorDashboard();
+  // const isInstructor = true;
+  // const isAdmin = false;
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructorDashboard();
   return (
     <div>
       <div className="drawer lg:drawer-open">

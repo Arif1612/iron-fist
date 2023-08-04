@@ -68,11 +68,9 @@ const SignUp = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Iron Fist | SignUp </title>
-      </Helmet>
+      
       <div className="hero md:flex md:justify-center md:items-center h-screen    bg-base-200 ">
-        <div className="md:w-5/12 w-9/12 bg-base-100 shadow-2xl  bg-base-100  ">
+        <div className="md:w-5/12 w-9/1 shadow-2xl  bg-base-100  ">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="card  w-full  bg-base-100">
               <div className="card-body">

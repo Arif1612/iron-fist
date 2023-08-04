@@ -61,10 +61,10 @@ const Navbar = () => {
             </Link>
             {user && (
               <Link
-                to="/dashboard/selected-classes"
+                to="/dashboard"
                 className="  mx-5 hover:bg-gray-500  text-base  hover:text-white p-2 rounded-lg"
               >
-                Selected Classes
+                Dashboard
               </Link>
             )}
           </ul>
@@ -112,10 +112,10 @@ const Navbar = () => {
         </Link>
         {user && (
           <Link
-            to="/dashboard/selected-classes"
+            to="/dashboard"
             className="mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg hover:text-white "
           >
-            Selected Classes
+            Dashboard
           </Link>
         )}
       </div>
