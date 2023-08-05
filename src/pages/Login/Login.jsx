@@ -47,7 +47,7 @@ const Login = () => {
       .catch((error) => {
         console.log("Login Failed:", error);
         const errorMessage = error.message || "An error occurred during login.";
-        Swal.fire({ 
+        Swal.fire({
           position: "top",
           icon: "error",
           title: errorMessage,

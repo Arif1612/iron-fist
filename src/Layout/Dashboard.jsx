@@ -24,7 +24,10 @@ const Dashboard = () => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Page content here */}
-          <Outlet></Outlet>
+          <div className="w-full">
+            <Outlet></Outlet>
+          </div>
+
           <label
             htmlFor="my-drawer-2"
             className="btn btn-primary my-10 drawer-button lg:hidden"
@@ -129,7 +132,7 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <Link
-                    to="/dashboard/payment-history"
+                    to="/dashboard/payment"
                     className="hover:bg-gray-500 hover:text-white rounded  text-base"
                   >
                     <FaMoneyBillAlt /> Payment History
@@ -152,7 +155,7 @@ const Dashboard = () => {
             <li>
               <Link
                 to="/classes"
-                className="hover:bg-gray-500 hover:text-white rounded  text-base"
+                className="hover:bg-gray-500 hover:text-white rounded text-base  "
               >
                 <FaLayerGroup /> Classes
               </Link>

@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import useStudentCart from "../../../hooks/useStudentCart";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const SelectedClasses = () => {
   const [studentCarts, refetch] = useStudentCart();
@@ -57,14 +58,11 @@ const SelectedClasses = () => {
         <div className="flex justify-center">
           <div className="grid sm:grid-cols-2 sm:w-11/12 lg:w-9/12 mx-auto  grid-cols-1 gap-8">
             {sortedClasses.map((singleClass) => (
-              <div
-                key={singleClass._id}
-                className="card bg-base-300 shadow-xl"
-              >
+              <div key={singleClass._id} className="card bg-base-300 shadow-xl">
                 <figure className="px-10 pt-10">
                   <img
                     src={singleClass.picture}
-                    alt="Shoes"
+                    alt="class image"
                     className="rounded-xl"
                   />
                 </figure>
@@ -142,9 +140,11 @@ const SelectedClasses = () => {
                   </div>
                   {/* pay button */}
                   <div className="w-full ">
-                    <button className="btn btn-active btn-primary w-full">
-                      Pay
-                    </button>
+                    <Link to="/dashboard/payment">
+                      <button className="btn btn-active btn-primary w-full">
+                        Pay
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
