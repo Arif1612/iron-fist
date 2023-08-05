@@ -4,8 +4,10 @@ import { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import "./CheckOutForm.css";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const CheckoutForm = ({ cart, price }) => {
+  // console.log(cart,price);
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -14,8 +16,6 @@ const CheckoutForm = ({ cart, price }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
-
-  
 
   useEffect(() => {
     if (price > 0) {
@@ -88,8 +88,15 @@ const CheckoutForm = ({ cart, price }) => {
       };
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);
-        if (res.data.result.insertedId) {
+        if (res.data.deleteResult.deletedCount > 0) {
           // display confirm
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Payment Successful ",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       });
     }

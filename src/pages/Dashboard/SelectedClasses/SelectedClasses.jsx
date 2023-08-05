@@ -61,7 +61,7 @@ const SelectedClasses = () => {
               <div key={singleClass._id} className="card bg-base-300 shadow-xl">
                 <figure className="px-10 pt-10">
                   <img
-                    src={singleClass.picture}
+                    src={singleClass.image}
                     alt="class image"
                     className="rounded-xl"
                   />
