@@ -11,8 +11,8 @@ const SelectedClasses = ({ classes }) => {
     price,
     availableSeats,
     courseDuration,
-    instructorsName,
-    picture,
+    instructorName,
+    image,
     subName,
     totalClass,
     totalSeats,
@@ -34,8 +34,8 @@ const SelectedClasses = ({ classes }) => {
         price,
         availableSeats,
         courseDuration,
-        instructorsName,
-        picture,
+        instructorName,
+        image,
         subName,
         totalClass,
         totalSeats,
@@ -92,14 +92,14 @@ const SelectedClasses = ({ classes }) => {
     <div>
       <div key={_id} className="card w-96 bg-base-200 shadow-xl">
         <figure className="px-10 pt-10">
-          <img src={picture} alt="Shoes" className="rounded-xl" />
+          <img src={image} alt="images" className="rounded-xl" />
         </figure>
         <div className="card-body">
           <div>
             <h2 className="text-center font-semibold text-3xl mb-3 ">{subName}</h2>
             <h2 className="text-center text-xl mb-2 ">
               <span className="font-semibold "> Instructor: </span>
-              <span className="text-normal">{instructorsName}</span>
+              <span className="text-normal">{instructorName}</span>
             </h2>
             <div className="flex">
               <div className="w-1/2 text-lg">
