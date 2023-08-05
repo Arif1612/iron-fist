@@ -32,9 +32,6 @@ const Instructor = () => {
                 <h2 className="card-title">{instructor.name}</h2>
                 <p>{instructor.email}</p>
                 <p>Number of Classes: {instructor.noOfClass}</p>
-                <div className="card-actions w-full">
-                  <button className="btn btn-primary w-full">Select</button>
-                </div>
               </div>
             </div>
           ))}
