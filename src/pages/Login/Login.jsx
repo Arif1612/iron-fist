@@ -35,7 +35,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         Swal.fire({
-          position: "top-end",
+          position: "top",
           icon: "success",
           title: "Login Successfully",
           showConfirmButton: false,
@@ -85,7 +85,7 @@ const Login = () => {
     if (validateCaptcha(user_captcha_value)) {
       setDisabled(false);
       Swal.fire({
-        position: "top-end",
+        position: "top",
         icon: "success",
         title: "Captcha Validate Successfully",
         showConfirmButton: false,

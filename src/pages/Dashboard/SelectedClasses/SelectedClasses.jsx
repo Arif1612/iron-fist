@@ -17,9 +17,11 @@ const SelectedClasses = () => {
   const sortedClasses = [...classesWithNoOfStudents].sort(
     (a, b) => b.noOfStudents - a.noOfStudents
   );
-  // total price
-  // const totalPrice = studentCarts.reduce((acc, item) => acc + item.price, 0);
-  // console.log(totalPrice);
+
+  const totalPrice = studentCarts.reduce(
+    (acc, singleClass) => acc + singleClass.price,
+    0
+  );
 
   const handleDelete = (singleClass) => {
     Swal.fire({
@@ -52,9 +54,21 @@ const SelectedClasses = () => {
         <title>Iron Fist | Selected Class </title>
       </Helmet>
       <div>
-        <h1 className="text-3xl text-center my-6 font-bold">
-          Total Subject Taken: {studentCarts.length}
-        </h1>
+        {/* alada */}
+        <div>
+          <div className="flex w-10/12 text-2xl font-bold mb-4 justify-center items-center">
+            <h1 className="ml-5">Subject Taken: {studentCarts.length}</h1>
+            <h1 className="ml-5"> Total Price: $ {totalPrice}</h1>
+            {/* pay button */}
+            <div className="ml-5">
+              <Link to="/dashboard/payment">
+                <button className="btn btn-active btn-primary w-full">
+                  Payment
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
         <div className="flex justify-center">
           <div className="grid sm:grid-cols-2 sm:w-11/12 lg:w-9/12 mx-auto  grid-cols-1 gap-8">
             {sortedClasses.map((singleClass) => (
@@ -137,14 +151,6 @@ const SelectedClasses = () => {
                         />
                       </svg>
                     </button>
-                  </div>
-                  {/* pay button */}
-                  <div className="w-full ">
-                    <Link to="/dashboard/payment">
-                      <button className="btn btn-active btn-primary w-full">
-                        Pay
-                      </button>
-                    </Link>
                   </div>
                 </div>
               </div>

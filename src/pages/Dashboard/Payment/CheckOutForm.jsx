@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import "./CheckOutForm.css";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import "./CheckOutForm.css";
 
 const CheckoutForm = ({ cart, price }) => {
   // console.log(cart,price);
@@ -81,8 +82,8 @@ const CheckoutForm = ({ cart, price }) => {
         price,
         date: new Date(),
         quantity: cart.length,
-        cartItems: cart.map((item) => item._id),
-        menuItems: cart.map((item) => item.classId),
+        studentCarts: cart.map((item) => item._id),
+        classDetails: cart.map((item) => item.classId),
         status: "service pending",
         itemNames: cart.map((item) => item.subName),
       };
@@ -104,6 +105,7 @@ const CheckoutForm = ({ cart, price }) => {
 
   return (
     <div className="w-full  m-8">
+      <h1 className="text-left ml-0 text-xl font-bold">Total Price: $ {price}</h1>
       <form className="w-full" onSubmit={handleSubmit}>
         <CardElement
           options={{
