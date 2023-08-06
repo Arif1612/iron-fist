@@ -19,7 +19,7 @@ const Instructor = () => {
           {sortedInstructors.map((instructor) => (
             <div
               key={instructor._id}
-              className="card w-96 bg-base-100 shadow-xl"
+              className="card w-auto bg-base-100 shadow-xl"
             >
               <figure className="px-10 pt-10">
                 <img

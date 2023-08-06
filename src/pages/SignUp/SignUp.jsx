@@ -69,11 +69,11 @@ const SignUp = () => {
   return (
     <>
       
-      <div className="hero md:flex md:justify-center md:items-center h-screen    bg-base-200 ">
+      <div className="hero md:flex md:justify-center md:items-center my-10   bg-base-200 ">
         <div className="md:w-5/12 w-9/1 shadow-2xl  bg-base-100  ">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form className="m-2  p-3" onSubmit={handleSubmit(onSubmit)}>
             <div className="card  w-full  bg-base-100">
-              <div className="card-body">
+              <div className="card-body m-0 p-5">
                 {/* main div */}
                 <div className="flex flex-col md:flex-row">
                   {/* left */}

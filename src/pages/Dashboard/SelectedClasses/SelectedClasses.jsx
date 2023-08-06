@@ -56,21 +56,21 @@ const SelectedClasses = () => {
       <div>
         {/* alada */}
         <div>
-          <div className="flex w-10/12 text-2xl font-bold mb-4 justify-center items-center">
+          <div className="flex w-10/12 text-2xl font-bold mb-4 justify-around ml-16 items-center">
             <h1 className="ml-5">Subject Taken: {studentCarts.length}</h1>
             <h1 className="ml-5"> Total Price: $ {totalPrice}</h1>
             {/* pay button */}
             <div className="ml-5">
               <Link to="/dashboard/payment">
                 <button className="btn btn-active btn-primary w-full">
-                  Payment
+                  Pay Now
                 </button>
               </Link>
             </div>
           </div>
         </div>
         <div className="flex justify-center">
-          <div className="grid sm:grid-cols-2 sm:w-11/12 lg:w-9/12 mx-auto  grid-cols-1 gap-8">
+          <div className="grid sm:grid-cols-2 sm:w-11/12 lg:w-9/12 mx-auto  grid-cols-1 gap-4">
             {sortedClasses.map((singleClass) => (
               <div key={singleClass._id} className="card bg-base-300 shadow-xl">
                 <figure className="px-10 pt-10">
@@ -91,8 +91,11 @@ const SelectedClasses = () => {
                         {singleClass.instructorsName}
                       </span>
                     </h2>
+
+                    {/* main div */}
                     <div className="flex">
-                      <div className="w-1/2 text-lg">
+                      {/* left */}
+                      <div className="w-1/2  text-base ">
                         <p className="mb-2">
                           <span className="font-semibold"> Duration:</span>
                           {singleClass.courseDuration}
@@ -102,11 +105,12 @@ const SelectedClasses = () => {
                           {singleClass.totalClass}
                         </p>
                         <p>
-                          <span className="font-semibold"> Price:</span>
+                          <span className="font-semibold"> Price:</span>$
                           {singleClass.price}
                         </p>
                       </div>
-                      <div className="text-right text-lg">
+                      {/* right */}
+                      <div className="text-right text-base">
                         <p className="mb-2">
                           <span className="font-semibold"> Total Seats:</span>{" "}
                           {singleClass.totalSeats}

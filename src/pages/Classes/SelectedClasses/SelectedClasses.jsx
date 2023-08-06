@@ -60,13 +60,11 @@ const SelectedClasses = ({ classes }) => {
               timer: 2000,
             });
             refetch();
-          }
-          else {
+          } else {
             Swal.fire({
-              icon: 'error',
-              title: 'You already select the class.',
-            })
-            
+              icon: "error",
+              title: "You already select the class.",
+            });
           }
         });
     }
@@ -90,19 +88,22 @@ const SelectedClasses = ({ classes }) => {
 
   return (
     <div>
-      <div key={_id} className="card w-96 bg-base-200 shadow-xl">
+      <div key={_id} className="card w-full bg-base-200 shadow-xl">
         <figure className="px-10 pt-10">
           <img src={image} alt="images" className="rounded-xl" />
         </figure>
         <div className="card-body">
           <div>
-            <h2 className="text-center font-semibold text-3xl mb-3 ">{subName}</h2>
+            <h2 className="text-center font-semibold text-3xl mb-3 ">
+              {subName}
+            </h2>
             <h2 className="text-center text-xl mb-2 ">
               <span className="font-semibold "> Instructor: </span>
               <span className="text-normal">{instructorName}</span>
             </h2>
             <div className="flex">
-              <div className="w-1/2 text-lg">
+              {/* left */}
+              <div className="w-1/2  text-base ">
                 <p className="mb-2">
                   <span className="font-semibold"> Duration:</span>
                   {courseDuration}
@@ -112,13 +113,14 @@ const SelectedClasses = ({ classes }) => {
                   {totalClass}
                 </p>
                 <p>
-                  <span className="font-semibold"> Price:</span>
-                  {price}
+                  <span className="font-semibold"> Price:</span>$ {price}
                 </p>
               </div>
-              <div className="text-right text-lg">
+              {/* right */}
+              <div className="text-right text-base">
                 <p className="mb-2">
-                  <span className="font-semibold"> Total Seats:</span> {totalSeats}
+                  <span className="font-semibold"> Total Seats:</span>{" "}
+                  {totalSeats}
                 </p>
                 <p className="mb-2">
                   {" "}

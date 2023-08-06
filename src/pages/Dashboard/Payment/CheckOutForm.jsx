@@ -105,7 +105,7 @@ const CheckoutForm = ({ cart, price }) => {
 
   return (
     <div className="w-full  m-8">
-      <h1 className="text-left ml-0 text-xl font-bold">Total Price: $ {price}</h1>
+      <h1 className="text-left ml-20 text-xl font-bold">Total Price: $ {price}</h1>
       <form className="w-full" onSubmit={handleSubmit}>
         <CardElement
           options={{

@@ -57,24 +57,6 @@ const Login = () => {
       });
   };
 
-  // ager code
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  //   signIn(data.email, data.password).then((result) => {
-  //     const user = result.user;
-  //     console.log(user);
-  //     Swal.fire({
-  //       position: "top-end",
-  //       icon: "success",
-  //       title: "Login Successfully",
-  //       showConfirmButton: false,
-  //       timer: 1500,
-  //     });
-
-  //     navigate(from, { replace: true });
-  //   });
-  // };
-
   useEffect(() => {
     loadCaptchaEnginge(3);
   }, []);
@@ -104,12 +86,13 @@ const Login = () => {
       <Helmet>
         <title>Iron Fist | Login </title>
       </Helmet>
-      <div className="hero md:flex md:justify-center md:items-center h-screen   bg-base-200 ">
-        <div className="md:w-5/12 w-full bg-base-100  shadow-2xl bg-base-100  ">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="hero-content w-full">
-              <div className="card  w-full ">
-                <div className="card-body pb-0">
+
+      <div className="hero md:flex min-h-screen my-10 md:justify-center md:items-center bg-base-200 ">
+        <div className=" p-0 m-0 bg-base-100  shadow-2xl  ">
+          <form className="m-0" onSubmit={handleSubmit(onSubmit)}>
+            <div className="hero-content ">
+              <div className="card   ">
+                <div className="card-body m-1 p-2">
                   {/* email */}
                   <div className="form-control">
                     <label className="label">

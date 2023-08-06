@@ -90,7 +90,7 @@ const Navbar = () => {
       {/* start end  */}
 
       {/* nav lg screen  (middle part) */}
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center  hidden lg:flex">
         <Link
           className=" mr-5  hover:bg-gray-500 px-3 py-2 rounded hover:text-lg  hover:text-white"
           to="/"
