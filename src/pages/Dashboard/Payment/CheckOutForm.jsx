@@ -82,11 +82,20 @@ const CheckoutForm = ({ cart, price }) => {
         price,
         date: new Date(),
         quantity: cart.length,
-        studentCarts: cart.map((item) => item._id),
-        classDetails: cart.map((item) => item.classId),
+        cartItems: cart.map((item) => item._id),
+        studentCarts: cart.map((item) => ({
+          id: item._id,
+          classId: item.classId,
+          price: item.price,
+          availableSeats: item.availableSeats,
+          instructorName: item.instructorName,
+          image: item.image,
+          subName: item.subName,
+          email: item.email,
+        })),
         status: "service pending",
-        itemNames: cart.map((item) => item.subName),
       };
+
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);
         if (res.data.deleteResult.deletedCount > 0) {
@@ -105,7 +114,9 @@ const CheckoutForm = ({ cart, price }) => {
 
   return (
     <div className="w-full  m-8">
-      <h1 className="text-left ml-20 text-xl font-bold">Total Price: $ {price}</h1>
+      <h1 className="text-left ml-20 text-xl font-bold">
+        Total Price: $ {price}
+      </h1>
       <form className="w-full" onSubmit={handleSubmit}>
         <CardElement
           options={{
