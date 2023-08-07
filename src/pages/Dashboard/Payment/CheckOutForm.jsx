@@ -113,6 +113,8 @@ const CheckoutForm = ({ cart, price }) => {
           image: item.image,
           subName: item.subName,
           email: item.email,
+          duration: item.courseDuration,
+          date: new Date(),
         })),
         status: "service pending",
       };

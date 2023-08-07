@@ -85,17 +85,17 @@ const SelectedClasses = () => {
                     <h2 className="text-center font-semibold text-3xl mb-3 ">
                       {singleClass.subName}
                     </h2>
-                    <h2 className="text-center text-xl mb-2 ">
+                    <h2 className="text-center text-base mb-2 ">
                       <span className="font-semibold "> Instructor: </span>
                       <span className="text-normal">
-                        {singleClass.instructorsName}
+                        {singleClass.instructorName}
                       </span>
                     </h2>
 
                     {/* main div */}
                     <div className="flex">
                       {/* left */}
-                      <div className="w-1/2  text-base ">
+                      <div className="w-1/2  text-sm  ">
                         <p className="mb-2">
                           <span className="font-semibold"> Duration:</span>
                           {singleClass.courseDuration}
@@ -110,7 +110,7 @@ const SelectedClasses = () => {
                         </p>
                       </div>
                       {/* right */}
-                      <div className="text-right text-base">
+                      <div className="text-right text-sm">
                         <p className="mb-2">
                           <span className="font-semibold"> Total Seats:</span>{" "}
                           {singleClass.totalSeats}
@@ -127,7 +127,7 @@ const SelectedClasses = () => {
                           {" "}
                           <span className="font-semibold">
                             {" "}
-                            No. Of Students:{" "}
+                            No Of Students:{" "}
                           </span>{" "}
                           {singleClass.noOfStudents}
                         </p>
