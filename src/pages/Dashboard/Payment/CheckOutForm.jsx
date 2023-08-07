@@ -74,6 +74,27 @@ const CheckoutForm = ({ cart, price }) => {
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
 
+      // update the student cart available seats
+      const updateSeats = {
+        studentCarts: cart.map((item) => ({
+          classId: item.classId,
+          subName: item.subName,
+          email: item.email,
+        })),
+      };
+      // Send a PATCH request for each class to update the available seats
+      updateSeats.studentCarts.forEach((classItem) => {
+        const classId = classItem.classId;
+        axiosSecure
+          .patch(`/classes/${classId}/update-seats`)
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+
       // save payment information to the server
 
       const payment = {

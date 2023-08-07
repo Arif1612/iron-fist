@@ -6,7 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useStudentCart from "../../../hooks/useStudentCart";
 
 const SelectedClasses = ({ classes }) => {
-  // console.log(classes);
+  console.log(classes);
+
   const {
     price,
     availableSeats,
@@ -88,7 +89,14 @@ const SelectedClasses = ({ classes }) => {
 
   return (
     <div>
-      <div key={_id} className="card w-full bg-base-200 shadow-xl">
+      <div
+        key={_id}
+        className={
+          classes.availableSeats === 0
+            ? "card  w-full bg-red-500  shadow-xl"
+            : "card  w-full bg-base-200 shadow-xl"
+        }
+      >
         <figure className="px-10 pt-10">
           <img src={image} alt="images" className="rounded-xl" />
         </figure>
@@ -137,9 +145,10 @@ const SelectedClasses = ({ classes }) => {
           <div className="card-actions w-full">
             <button
               onClick={() => handleAddToCart(classes)}
-              className="btn btn-primary w-full font-semibold"
+              className="btn btn-primary w-full font-semibold "
+              disabled={classes.availableSeats === 0}
             >
-              select
+              {classes.availableSeats === 0 ? "No Seat Available" : "Select"}
             </button>
           </div>
         </div>
