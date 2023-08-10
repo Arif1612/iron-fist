@@ -5,10 +5,13 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useInstructor from "../../../hooks/useInstructor";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import useSpecificInstructor from "../../../hooks/useSpecificInstructor";
+import usePayment from "../../../hooks/usePayment";
 
 const MyClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const [instructor] = useSpecificInstructor();
+  const [payments] = usePayment();
+  
   // console.log(user);
   console.log(instructor);
 
@@ -68,10 +71,12 @@ const MyClasses = () => {
                   </div>
                 </td>
                 <td>{item.subName}</td>
-                <td>{item.name}</td>
+                <td>{item.instructorName}</td>
                 <td>{item.email}</td>
-                <td>{item.availableSeats}</td>
-                <td></td>
+                <td>
+                  {parseFloat(item.totalSeats) -
+                    parseFloat(item.availableSeats)}
+                </td>
                 <td>{item.status}</td>
                 <td></td>
               </tr>

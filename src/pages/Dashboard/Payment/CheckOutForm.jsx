@@ -132,7 +132,7 @@ const CheckoutForm = ({ cart, price }) => {
           id: item._id,
           classId: item.classId,
           price: item.price,
-          availableSeats: item.availableSeats,
+          availableSeats: item.availableSeats - 1,
           instructorName: item.instructorName,
           image: item.image,
           subName: item.subName,
@@ -140,7 +140,7 @@ const CheckoutForm = ({ cart, price }) => {
           duration: item.courseDuration,
           date: formatDate(new Date()),
           totalSeats: item.totalSeats,
-          noOfStudents: item.totalSeats - item.availableSeats,
+          noOfStudents: item.totalSeats - (item.availableSeats - 1),
         })),
         status: "pending",
       };
