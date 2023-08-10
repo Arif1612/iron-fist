@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import "./CheckOutForm.css";
 
 const CheckoutForm = ({ cart, price }) => {
-  // console.log(cart,price);
+  // console.log(cart, price);
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -96,12 +96,36 @@ const CheckoutForm = ({ cart, price }) => {
       });
 
       // save payment information to the server
+      function formatDate(date) {
+        const options = { day: "numeric", month: "short", year: "numeric" };
+        const formattedDate = new Date(date).toLocaleDateString(
+          undefined,
+          options
+        );
 
+        const day = new Date(date).getDate();
+        const suffix = getDaySuffix(day);
+        const monthYear = formattedDate.replace(day, "").trim();
+
+        return `${day}${suffix} ${monthYear}`;
+      }
+
+      function getDaySuffix(day) {
+        if (day === 1 || day === 21 || day === 31) {
+          return "st";
+        } else if (day === 2 || day === 22) {
+          return "nd";
+        } else if (day === 3 || day === 23) {
+          return "rd";
+        } else {
+          return "th";
+        }
+      }
       const payment = {
         email: user?.email,
         transactionId: paymentIntent.id,
         price,
-        date: new Date(),
+        date: formatDate(new Date()),
         quantity: cart.length,
         cartItems: cart.map((item) => item._id),
         studentCarts: cart.map((item) => ({
@@ -114,9 +138,11 @@ const CheckoutForm = ({ cart, price }) => {
           subName: item.subName,
           email: item.email,
           duration: item.courseDuration,
-          date: new Date(),
+          date: formatDate(new Date()),
+          totalSeats: item.totalSeats,
+          noOfStudents: item.totalSeats - item.availableSeats,
         })),
-        status: "service pending",
+        status: "pending",
       };
 
       axiosSecure.post("/payments", payment).then((res) => {

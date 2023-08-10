@@ -16,6 +16,9 @@ const AddAClass = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+  const [updateClass, setUpdateClass] = useState(0);
+
+  // console.log(user.photoURL);
 
   // all this thing taken from react hook form
   const {
@@ -24,6 +27,10 @@ const AddAClass = () => {
     formState: { errors },
     reset,
   } = useForm();
+
+  const handleAddClass = () => {
+    setUpdateClass((prevValue) => prevValue + 1); // Increment updateClass by 1
+  };
 
   const onSubmit = (data) => {
     const formData = new FormData();
@@ -44,9 +51,9 @@ const AddAClass = () => {
             email,
             instructorName,
             price,
-            totalSeats,
             courseDuration,
             totalClass,
+            status,
           } = data;
           const newClass = {
             availableSeats: parseFloat(availableSeats),
@@ -56,10 +63,33 @@ const AddAClass = () => {
             courseDuration: parseFloat(courseDuration),
             totalClass: parseFloat(totalClass),
             price: parseFloat(price),
-            totalSeats: parseFloat(totalSeats),
+            totalSeats: parseFloat(availableSeats),
             image: imgURL,
+            status,
           };
           console.log(newClass);
+          console.log("photoUrl", user.photoURL);
+
+          const newInstructor = {
+            email,
+            name: instructorName,
+            image: user.photoURL,
+            noOfClass: updateClass + 1,
+            subName,
+            status,
+          };
+
+          // instructors
+          axiosSecure.post("/instructors", newInstructor).then((data) => {
+            if (data.data.insertedId) {
+              reset();
+            }
+          });
+          // axiosSecure.patch("/instructors/:_id",).then((data) => {
+          //   if (data.data.insertedId) {
+          //     reset();
+          //   }
+          // });
           axiosSecure.post("/classes", newClass).then((data) => {
             console.log("after posting new classes item", data.data);
             if (data.data.insertedId) {
@@ -85,9 +115,9 @@ const AddAClass = () => {
 
       {/* form related */}
       <div className="hero min-h-screen bg-base-200">
-        <div className="w-9/12 ">
-          <div className="card  max-w-full shadow-2xl bg-base-100">
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="w-10/12 ">
+          <div className="card m-3  max-w-full shadow-2xl bg-base-100">
+            <form className="m-0" onSubmit={handleSubmit(onSubmit)}>
               <div className="card-body">
                 {/* main div  */}
                 <div className="flex justify-center items-center  mr-3">
@@ -189,24 +219,6 @@ const AddAClass = () => {
                         </span>
                       )}
                     </div>
-                    {/* Total Seats */}
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text">Total Seats</span>
-                      </label>
-                      <input
-                        {...register("totalSeats", { required: true })}
-                        type="text"
-                        placeholder="total seats"
-                        className="input input-bordered"
-                      />
-                      {/* error message */}
-                      {errors.className && (
-                        <span className="text-red-500">
-                          total seats value is required
-                        </span>
-                      )}
-                    </div>
 
                     {/* Available Seats */}
                     <div className="form-control">
@@ -243,10 +255,26 @@ const AddAClass = () => {
                         <span className="text-red-500">Price is required</span>
                       )}
                     </div>
+                    {/*status */}
+                    <div className="form-control">
+                      <label className="label">
+                        <span className="label-text">Status</span>
+                      </label>
+                      <input
+                        {...register("status", { required: true })}
+                        type="text"
+                        placeholder="price"
+                        className="input input-bordered"
+                        value="pending"
+                      />
+                      {/* error message */}
+                      {errors.className && (
+                        <span className="text-red-500">Price is required</span>
+                      )}
+                    </div>
                   </div>
                 </div>
                 {/* main end */}
-
                 {/* Add Image */}
                 <div className="form-control w-full my-4">
                   <label className="label">
@@ -262,7 +290,6 @@ const AddAClass = () => {
                     <span className="text-red-500">Image is required</span>
                   )}
                 </div>
-
                 {/* login */}
                 <div className="form-control mt-6">
                   <button className="btn btn-primary">Add A Class</button>

@@ -8,11 +8,15 @@ const InstructorSection = () => {
     (a, b) => b.noOfClass - a.noOfClass
   );
 
+  // Slice the first 6 instructors from the sorted list
+  const displayedInstructors = sortedInstructors.slice(0, 6);
+
+
   return (
     <div>
       <div className="flex justify-center">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
-          {sortedInstructors.map((instructor) => (
+          {displayedInstructors.map((instructor) => (
             <div
               key={instructor._id}
               className="card w-full bg-base-100 shadow-xl"

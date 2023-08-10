@@ -8,6 +8,7 @@ const Instructor = () => {
   const sortedInstructors = [...instructors].sort(
     (a, b) => b.noOfClass - a.noOfClass
   );
+  
 
   return (
     <div>
