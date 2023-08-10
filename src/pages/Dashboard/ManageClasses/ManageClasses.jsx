@@ -3,33 +3,43 @@ import "../../../hooks/useClass";
 import useClass from "../../../hooks/useClass";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useState } from "react";
 
 const ManageClasses = () => {
   const [classes, refetch] = useClass();
   const [axiosSecure] = useAxiosSecure();
+  const [disableButtons, setDisableButtons] = useState(false);
 
-  const handleDelete = (item) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure.delete(`/classes/${item._id}`).then((res) => {
-          console.log("deleted res", res.data);
-          if (res.data.deletedCount > 0) {
-            Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            refetch();
-          }
-        });
-      }
-    });
+  const handleApproved = (item) => {
+    setDisableButtons(true); 
+    const newStatus = "approved";
+
+    axiosSecure
+      .patch(`/classes/${item._id}`, { status: newStatus })
+      .then((res) => {
+        console.log(res.data);
+        refetch();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
-  
+  const handleDenied = (item) => {
+    setDisableButtons(true); // Disable buttons after approving
+    // Update the status to "approved" here
+    const newStatus = "denied"; // Update the status to "denied" for Deny action
+
+    axiosSecure
+      .patch(`/classes/${item._id}`, { status: newStatus })
+      .then((res) => {
+        console.log(res.data);
+        refetch();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="w-full">
       <div className="overflow-x-auto w-full">
@@ -45,6 +55,7 @@ const ManageClasses = () => {
               <th>Available Seats</th>
               <th>Price</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -69,16 +80,31 @@ const ManageClasses = () => {
                 <td>{item.availableSeats}</td>
 
                 <td className="text-right">${item.price}</td>
+                <td className="text-right">{item.status}</td>
                 <td>
-                  <div className="btn-group">
-                    <button className="btn btn-success">Approve</button>
+                  <div className="btn-group btn-group-vertical ">
                     <button
-                      onClick={() => handleDelete(item)}
+                      onClick={() => handleApproved(item)}
+                      className="btn btn-success"
+                      disabled={disableButtons} // Disable the button when needed
+                    >
+                      Approve
+                    </button>
+                    <button
+                      onClick={() => handleDenied(item)}
                       className="btn btn-error"
+                      disabled={disableButtons} // Disable the button when needed
                     >
                       Deny
                     </button>
-                    <button className="btn btn-warning">Feedback</button>
+
+                    <button
+                      onClick={() => handleDenied(item)}
+                      className="btn btn-warning"
+                      disabled={disableButtons} // Disable the button when needed
+                    >
+                      Feedback
+                    </button>
                   </div>
                 </td>
               </tr>

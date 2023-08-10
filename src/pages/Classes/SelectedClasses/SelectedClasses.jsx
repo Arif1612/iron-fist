@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useStudentCart from "../../../hooks/useStudentCart";
 
 const SelectedClasses = ({ classes }) => {
-  console.log(classes);
+  // console.log(classes);
 
   const {
     price,

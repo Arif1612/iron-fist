@@ -9,9 +9,38 @@ const AllUsers = () => {
   const [axiosSecure] = useAxiosSecure();
 
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await axiosSecure.get('/users')
+    const res = await axiosSecure.get("/users");
     return res.data;
   });
+
+  console.log(users);
+
+  const handleInstructor = (user) => {
+    const newRole = "instructor";
+
+    axiosSecure
+      .patch(`/users/${user._id}`, { role: newRole })
+      .then((res) => {
+        console.log(res.data);
+        refetch();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const handleAdmin = (user) => {
+    const newRole = "admin";
+
+    axiosSecure
+      .patch(`/users/${user._id}`, { role: newRole })
+      .then((res) => {
+        console.log(res.data);
+        refetch();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const handleDelete = (user) => {
     Swal.fire({
@@ -37,25 +66,7 @@ const AllUsers = () => {
       }
     });
   };
-  const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .tehn((data) => {
-        console.log(data);
-        if (data.modifiedCount) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${user.name} is admin now`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
-  };
+
   return (
     <div>
       <Helmet>
@@ -76,22 +87,33 @@ const AllUsers = () => {
           <tbody>
             {/* row 1 */}
             {users.map((user, index) => (
-              <tr>
+              <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
                   {user.role === "admin" ? (
                     "admin"
+                  ) : user.role === "instructor" ? (
+                    "instructor"
                   ) : (
-                    <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-ghost bg-gray-200 hover:bg-gray-600  hover:text-white text-xl "
-                    >
-                      <FaUserShield></FaUserShield>
-                    </button>
+                    <div className="btn-group btn-group-vertical ">
+                      <button
+                        onClick={() => handleMakeInstructor(user)}
+                        className="btn btn-success"
+                      >
+                        Make Instructor
+                      </button>
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="btn btn-warning"
+                      >
+                        Make Admin
+                      </button>
+                    </div>
                   )}
                 </td>
+
                 <td>
                   <button
                     onClick={() => handleDelete(user)}
