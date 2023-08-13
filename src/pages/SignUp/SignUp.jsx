@@ -35,7 +35,7 @@ const SignUp = () => {
         updateUserProfile(data.name, data.photoUrl)
           .then(() => {
             const saveUser = { name: data.name, email: data.email };
-            fetch("http://localhost:5000/users", {
+            fetch("https://iron-fist-server-ten.vercel.app/users", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
@@ -68,7 +68,6 @@ const SignUp = () => {
 
   return (
     <>
-      
       <div className="hero md:flex md:justify-center md:items-center my-10   bg-base-200 ">
         <div className="md:w-5/12 w-9/1 shadow-2xl  bg-base-100  ">
           <form className="m-2  p-3" onSubmit={handleSubmit(onSubmit)}>

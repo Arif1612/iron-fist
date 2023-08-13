@@ -5,7 +5,6 @@ import "./CheckOutForm.css";
 import useStudentCart from "../../../hooks/useStudentCart";
 import usePayment from "../../../hooks/usePayment";
 
-// TODO: provide publishable Key
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const Payment = () => {
   const [payments] = usePayment();
@@ -13,6 +12,11 @@ const Payment = () => {
   console.log(studentCarts);
   const total = studentCarts.reduce((sum, item) => sum + item.price, 0);
   const price = parseFloat(total.toFixed(2));
+
+  // Sort payments in descending order based on date
+  const sortedPayments = [...payments].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
   return (
     <div>
       <Elements stripe={stripePromise}>
@@ -34,9 +38,9 @@ const Payment = () => {
               </tr>
             </thead>
             <tbody>
-              {payments.map((payment,index) => (
-                <tr key={payment._id}  className="bg-base-200">
-                  <th>{index+1}</th>
+              {sortedPayments.map((payment, index) => (
+                <tr key={payment._id} className="bg-base-200">
+                  <th>{index + 1}</th>
                   <th>{payment.email}</th>
                   <td>{payment.transactionId}</td>
                   <td>${payment.price}</td>

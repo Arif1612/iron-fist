@@ -8,7 +8,9 @@ const useStudent = () => {
   } = useQuery({
     queryKey: ["students"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/students");
+      const res = await fetch(
+        "https://iron-fist-server-ten.vercel.app/students"
+      );
       return res.json();
     },
   });

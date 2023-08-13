@@ -22,6 +22,13 @@ const AllUsers = () => {
       .patch(`/users/${user._id}`, { role: newRole })
       .then((res) => {
         console.log(res.data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Make Instructor Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         refetch();
       })
       .catch((error) => {
@@ -35,6 +42,13 @@ const AllUsers = () => {
       .patch(`/users/${user._id}`, { role: newRole })
       .then((res) => {
         console.log(res.data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Make Admin Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         refetch();
       })
       .catch((error) => {
@@ -53,9 +67,12 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://iron-fist-server-ten.vercel.app/users/admin/${user._id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -94,18 +111,16 @@ const AllUsers = () => {
                 <td>
                   {user.role === "admin" ? (
                     "admin"
-                  ) : user.role === "instructor" ? (
-                    "instructor"
                   ) : (
                     <div className="btn-group btn-group-vertical ">
                       <button
-                        onClick={() => handleMakeInstructor(user)}
+                        onClick={() => handleInstructor(user)}
                         className="btn btn-success"
                       >
                         Make Instructor
                       </button>
                       <button
-                        onClick={() => handleMakeAdmin(user)}
+                        onClick={() => handleAdmin(user)}
                         className="btn btn-warning"
                       >
                         Make Admin
@@ -113,7 +128,6 @@ const AllUsers = () => {
                     </div>
                   )}
                 </td>
-
                 <td>
                   <button
                     onClick={() => handleDelete(user)}

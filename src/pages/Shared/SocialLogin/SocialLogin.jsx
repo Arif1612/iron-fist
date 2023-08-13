@@ -18,7 +18,7 @@ const SocialLogin = () => {
         name: loggedInUser.displayName,
         email: loggedInUser.email,
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://iron-fist-server-ten.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -36,7 +36,10 @@ const SocialLogin = () => {
     <div>
       <div className=" border-2 mx-10  border-gray-500 "></div>
       <div className=" text-center p-3">
-        <button className="btn btn-ghost hover:bg-gray-500 hover:text-white" onClick={handleGoogleSignIn}>
+        <button
+          className="btn btn-ghost hover:bg-gray-500 hover:text-white"
+          onClick={handleGoogleSignIn}
+        >
           <FaGoogle className=" text-5xl  p-2 rounded-xl "></FaGoogle>
         </button>
       </div>

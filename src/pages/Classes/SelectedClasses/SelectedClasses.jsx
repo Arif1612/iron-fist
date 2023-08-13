@@ -42,7 +42,7 @@ const SelectedClasses = ({ classes }) => {
         totalSeats,
         email: user.email,
       };
-      fetch("http://localhost:5000/student-carts", {
+      fetch("https://iron-fist-server-ten.vercel.app/student-carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",

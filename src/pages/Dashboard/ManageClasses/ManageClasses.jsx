@@ -11,19 +11,26 @@ const ManageClasses = () => {
   const [disableButtons, setDisableButtons] = useState(false);
 
   const handleApproved = (item) => {
-    setDisableButtons(true); 
+    setDisableButtons(true);
     const newStatus = "approved";
 
     axiosSecure
       .patch(`/classes/${item._id}`, { status: newStatus })
       .then((res) => {
         console.log(res.data);
-        refetch();
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "approved successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
   const handleDenied = (item) => {
     setDisableButtons(true); // Disable buttons after approving
     // Update the status to "approved" here
@@ -33,11 +40,25 @@ const ManageClasses = () => {
       .patch(`/classes/${item._id}`, { status: newStatus })
       .then((res) => {
         console.log(res.data);
-        refetch();
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "denied ",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const handleFeedback = (item) => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Feedback functionality is not available!",
+    });
   };
 
   return (
@@ -99,9 +120,8 @@ const ManageClasses = () => {
                     </button>
 
                     <button
-                      onClick={() => handleDenied(item)}
+                      onClick={() => handleFeedback(item)}
                       className="btn btn-warning"
-                      disabled={disableButtons} // Disable the button when needed
                     >
                       Feedback
                     </button>

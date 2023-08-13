@@ -11,7 +11,9 @@ const useSpecificInstructor = () => {
   } = useQuery({
     queryKey: ["instructor", user?.email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/instructors/${user?.email}`);
+      const res = await fetch(
+        `https://iron-fist-server-ten.vercel.app/instructors/${user?.email}`
+      );
       return res.json();
     },
   });
