@@ -5,7 +5,7 @@ const useInstructor = () => {
     isLoading: loading,
     data: instructors = [],
     refetch,
-  } = useQuery({
+  } = useQuery({  
     queryKey: ["instructor"],
     queryFn: async () => {
       const res = await fetch(
