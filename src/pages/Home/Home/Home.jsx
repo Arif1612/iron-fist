@@ -33,11 +33,11 @@ const Home = () => {
           <hr class="md:w-5/12 w-11/12 mx-auto border-2 border-gray-700  " />
         </div>
         <StudentAchievements></StudentAchievements>
-        <div class="text-center my-10 ">
+        {/* <div class="text-center my-10 ">
           <h2 class="text-5xl my-5">Popular Questions</h2>
           <hr class="md:w-5/12 w-11/12 mx-auto border-2 border-gray-700  " />
           <Questions></Questions>
-        </div>
+        </div> */}
       </Container>
      </div>
     </div>

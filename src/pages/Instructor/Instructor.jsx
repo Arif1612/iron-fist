@@ -1,6 +1,7 @@
 import React from "react";
 import useInstructor from "../../hooks/useInstructor";
 import { Helmet } from "react-helmet-async";
+import Container from "../Container";
 
 const Instructor = () => {
   const [instructors] = useInstructor();
@@ -11,11 +12,13 @@ const Instructor = () => {
   
 
   return (
-    <div>
+
+    <Container>
+      <div>
       <Helmet>
         <title>Iron Fist | Instructors </title>
       </Helmet>
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-5">
         <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
           {sortedInstructors.map((instructor) => (
             <div
@@ -39,6 +42,8 @@ const Instructor = () => {
         </div>
       </div>
     </div>
+    </Container>
+    
   );
 };
 

@@ -4,6 +4,7 @@ import useClass from "../../../hooks/useClass";
 
 import { useContext } from "react";
 import SelectedClasses from "../SelectedClasses/SelectedClasses";
+import Container from "../../Container";
 
 const Classes = () => {
   const { user } = useContext(AuthContext);
@@ -25,16 +26,19 @@ const Classes = () => {
       <Helmet>
         <title>Iron Fist | Classes </title>
       </Helmet>
-      <div className="flex justify-center mt-5">
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
-          {sortedClasses.map((singleClass) => (
-            <SelectedClasses
-              key={singleClass._id}
-              classes={singleClass}
-            ></SelectedClasses>
-          ))}
+
+      <Container>
+        <div className="flex justify-center mt-5">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
+            {sortedClasses.map((singleClass) => (
+              <SelectedClasses
+                key={singleClass._id}
+                classes={singleClass}
+              ></SelectedClasses>
+            ))}
+          </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

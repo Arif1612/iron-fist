@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
@@ -130,11 +130,11 @@ const SignUp = () => {
                           placeholder="password"
                           className="input input-bordered"
                         />
-                        <FontAwesomeIcon
+                        {/* <FontAwesomeIcon
                           icon={showPassword ? faEyeSlash : faEye}
                           className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500"
                           onClick={() => setShowPassword(!showPassword)}
-                        />
+                        /> */}
                       </div>
                       {/* shown error */}
                       {errors.password?.type === "required" && (

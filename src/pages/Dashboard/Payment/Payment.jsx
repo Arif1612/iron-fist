@@ -18,15 +18,15 @@ const Payment = () => {
     (a, b) => new Date(b.date) - new Date(a.date)
   );
   return (
-    <div className=" overflow-x-scroll "> 
+    <div className="overflow-x-scroll ">
       <Elements stripe={stripePromise}>
         <CheckoutForm cart={studentCarts} price={price}></CheckoutForm>
       </Elements>
       <p className="text-xl font-bold text-center">Payment History</p>
-      <div className="w-full  m-8 ">
-        <div className="overflow-x-auto ">
+      <div className="w-full  m-8">
+        <div className=" ">
           <table className="table">
-            {/* head */}
+      
             <thead>
               <tr>
                 <th>#</th>

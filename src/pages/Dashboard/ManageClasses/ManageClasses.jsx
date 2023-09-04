@@ -62,8 +62,8 @@ const ManageClasses = () => {
   };
 
   return (
-    <div className="w-full">
-      <div className="overflow-x-auto w-full">
+    <div className="w-full overflow-x-scroll ">
+      <div className=" w-full">
         <table className="table w-full">
           {/* head */}
           <thead>
