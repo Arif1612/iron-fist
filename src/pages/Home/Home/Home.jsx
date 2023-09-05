@@ -6,6 +6,7 @@ import StudentAchievements from "../StudentAchievements/StudentAchievements";
 import Container from "../../Container";
 import About from "../About/About";
 import StudentFeedback from "../StudentFeedback/StudentFeedback";
+import ChooseUs from "../ChooseUs/ChooseUse";
 
 const Home = () => {
   return (
@@ -44,6 +45,18 @@ const Home = () => {
           <hr class="md:w-5/12 w-11/12 mx-auto border-2 border-gray-700  " />
         </div>
         <StudentFeedback></StudentFeedback>
+
+        <div class="text-center my-10 ">
+          <h2 class="text-5xl my-5">Why Choose us</h2>
+          <hr class="md:w-5/12 w-11/12 mx-auto border-2 border-gray-700  " />
+        </div>
+        <ChooseUs></ChooseUs>
+        <div class="text-center my-10 ">
+          <h2 class="text-5xl my-5">Contact Us</h2>
+          <hr class="md:w-5/12 w-11/12 mx-auto border-2 border-gray-700  " />
+        </div>
+        
+       
       
       </Container>
      </div>
