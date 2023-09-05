@@ -5,6 +5,7 @@ import InstructorSection from "../InstructorSection/InstructorSection";
 import StudentAchievements from "../StudentAchievements/StudentAchievements";
 import Questions from "../Questions/Questions";
 import Container from "../../Container";
+import About from "../About/About";
 
 const Home = () => {
   return (
@@ -16,6 +17,11 @@ const Home = () => {
 
      <div className="flex justify-center items-center ">
      <Container>
+     <div class="text-center my-10 ">
+          <h2 class="text-5xl my-5">About Us</h2>
+          <hr class="md:w-4/12 w-9/12 mx-auto border-2 border-gray-700  " />
+        </div>
+        <About></About>
         <div class="text-center my-10 ">
           <h2 class="text-5xl my-5">Popular Classes</h2>
           <hr class="md:w-4/12 w-9/12 mx-auto border-2 border-gray-700  " />
@@ -33,11 +39,11 @@ const Home = () => {
           <hr class="md:w-5/12 w-11/12 mx-auto border-2 border-gray-700  " />
         </div>
         <StudentAchievements></StudentAchievements>
-        {/* <div class="text-center my-10 ">
-          <h2 class="text-5xl my-5">Popular Questions</h2>
+        <div class="text-center my-10 ">
+          <h2 class="text-5xl my-5">Our Student Feedback</h2>
           <hr class="md:w-5/12 w-11/12 mx-auto border-2 border-gray-700  " />
-          <Questions></Questions>
-        </div> */}
+        </div>
+        <Questions></Questions>
       </Container>
      </div>
     </div>

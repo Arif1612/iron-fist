@@ -6,14 +6,17 @@ const StudentAchievements = () => {
   const [students] = useStudent();
   return (
     <div>
-      <Marquee>
+      {/* <Marquee> */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 ">
         {students.map((student) => (
-          <div
+        
+       
+           <div
             key={student._id}
-            className="card w-96 bg-base-100 shadow-xl image-full mr-5 "
+            className="card w-full bg-base-100 shadow-xl image-full mr-5 "
           >
             <img
-              className="w-[400px] h-[280px] rounded-xl"
+              className="w-full rounded-xl"
               src={student.picture}
               alt="Shoes"
             />
@@ -26,8 +29,10 @@ const StudentAchievements = () => {
               </div>
             </div>
           </div>
+       
         ))}
-      </Marquee>
+        </div>
+      {/* </Marquee> */}
     </div>
   );
 };
