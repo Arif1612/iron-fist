@@ -3,8 +3,8 @@ import aboutImg from "../../../assets/image/about.png"
 const About = () => {
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 w-full'>
-            <div className='w-full'>
-                <img src={aboutImg} alt="" />
+            <div className='w-full '>
+                <img className='rounded-2xl' src={aboutImg} alt="" />
             </div>
             <div className='my-auto w-full'>
                <p>At Iron Fist Martial Arts, we're dedicated to empowering individuals through the discipline of martial arts. With a rich legacy of over two decades, our school is a welcoming community where students of all ages and backgrounds can develop physical strength, mental resilience, and life-enhancing skills.</p> <br />

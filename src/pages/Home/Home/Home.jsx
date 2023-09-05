@@ -6,6 +6,7 @@ import StudentAchievements from "../StudentAchievements/StudentAchievements";
 import Questions from "../Questions/Questions";
 import Container from "../../Container";
 import About from "../About/About";
+import StudentFeedback from "../StudentFeedback/StudentFeedback";
 
 const Home = () => {
   return (
@@ -43,6 +44,7 @@ const Home = () => {
           <h2 class="text-5xl my-5">Our Student Feedback</h2>
           <hr class="md:w-5/12 w-11/12 mx-auto border-2 border-gray-700  " />
         </div>
+        <StudentFeedback></StudentFeedback>
         <Questions></Questions>
       </Container>
      </div>
