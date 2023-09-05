@@ -3,7 +3,6 @@ import SliderSection from "../SliderSection/SliderSection";
 import PopularClasses from "../PopularClasses/PopularClasses";
 import InstructorSection from "../InstructorSection/InstructorSection";
 import StudentAchievements from "../StudentAchievements/StudentAchievements";
-import Questions from "../Questions/Questions";
 import Container from "../../Container";
 import About from "../About/About";
 import StudentFeedback from "../StudentFeedback/StudentFeedback";
@@ -45,7 +44,7 @@ const Home = () => {
           <hr class="md:w-5/12 w-11/12 mx-auto border-2 border-gray-700  " />
         </div>
         <StudentFeedback></StudentFeedback>
-        <Questions></Questions>
+      
       </Container>
      </div>
     </div>

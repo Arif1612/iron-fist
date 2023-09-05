@@ -26,7 +26,7 @@ const StudentFeedback = () => {
 
         {/* 2 */}
 
-        <div id="slide2" className="carousel-item relative w-full">
+        <div id="slide2" className="carousel-item relative w-full  hidden md:block">
           <div className="card w-full bg-gray-200 shadow-xl mx-auto">
             <div className="card-body items-center text-center">
               <h2 className="card-title">James Taylor</h2>
