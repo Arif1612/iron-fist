@@ -14,7 +14,7 @@ const Navbar = () => {
       .catch(error);
   };
   return (
-    <div className="navbar  bg-gray-200 text-black">
+    <div className="navbar  bg-gray-300 text-black">
       <div className="navbar-start">
         <div className="dropdown">
           <label
