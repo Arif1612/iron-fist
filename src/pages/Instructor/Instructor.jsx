@@ -13,7 +13,8 @@ const Instructor = () => {
 
   return (
 
-    <Container>
+      <div className="flex justify-center items-center">
+          <Container>
       <div>
       <Helmet>
         <title>Iron Fist | Instructors </title>
@@ -43,6 +44,7 @@ const Instructor = () => {
       </div>
     </div>
     </Container>
+      </div>
     
   );
 };

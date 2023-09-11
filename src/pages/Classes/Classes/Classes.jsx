@@ -22,7 +22,7 @@ const Classes = () => {
   );
 
   return (
-    <div>
+    <div className="flex justify-center items-center">
       <Helmet>
         <title>Iron Fist | Classes </title>
       </Helmet>
